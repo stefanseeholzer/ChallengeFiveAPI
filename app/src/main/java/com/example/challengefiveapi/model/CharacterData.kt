@@ -1,4 +1,4 @@
-package com.example.challengefiveapi.network
+package com.example.challengefiveapi.model
 
 import kotlinx.serialization.Serializable
 

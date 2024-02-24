@@ -1,9 +1,9 @@
-
 @file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.example.challengefiveapi.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -19,8 +19,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.challengefiveapi.R
 import com.example.challengefiveapi.ui.screens.HomeScreen
-import com.example.challengefiveapi.ui.screens.CharactersViewModel
+import com.example.challengefiveapi.ui.screens.CharacterViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharactersApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -31,10 +32,10 @@ fun CharactersApp() {
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
-            val charactersViewModel: CharactersViewModel = viewModel()
+            val characterViewModel: CharacterViewModel = viewModel()
             HomeScreen(
-                charactersUiState = charactersViewModel.charactersUiState,
-                contentPadding = it,
+                characterUiState = characterViewModel.characterUiState,
+                contentPadding = it
             )
         }
     }
