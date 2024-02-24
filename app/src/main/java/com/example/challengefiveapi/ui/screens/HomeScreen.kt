@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -20,6 +22,8 @@ import coil.compose.rememberImagePainter
 import com.example.challengefiveapi.model.Character
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.challengefiveapi.ui.theme.CharacterTheme
@@ -68,9 +72,49 @@ fun ResultScreen(characters: List<Character>, modifier: Modifier = Modifier) {
 @Composable
 fun CharacterCard(character: Character, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
-        Column {
-            Image(painter = rememberAsyncImagePainter(character.image), contentDescription = "Image of ${character.name}")
-            Text(text = character.name)
+        Row(
+            modifier = Modifier
+                .height(100.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(character.image),
+                contentDescription = "Image of ${character.name}",
+                modifier = Modifier
+                    .height(100.dp),
+                alignment = Alignment.TopStart
+            )
+            Column {
+                Text(
+                    text = character.name,
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .fillMaxWidth()
+                        .height(25.dp)
+                )
+                Text(
+                    text = "Species: ${character.species}",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .fillMaxWidth()
+                        .height(25.dp)
+                )
+                Text(
+                    text = "Gender: ${character.gender}",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .fillMaxWidth()
+                        .height(25.dp)
+                )
+                Text(
+                    text = "Origin: ${character.origin.name}",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .fillMaxWidth()
+                        .height(25.dp)
+                )
+            }
         }
     }
 }
